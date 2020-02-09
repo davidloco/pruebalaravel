@@ -19,6 +19,6 @@ class Article extends Model
     }
 
     public funtion category(){
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo('App\Category');
     }
 }

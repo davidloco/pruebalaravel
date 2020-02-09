@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="phone" class="text-md-right">Numero Telefono</label>
 
-                            <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                            <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">
@@ -54,9 +54,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="birthdate" class="text-md-right">Fecha Nacimiento</label>
+                            <label for="birthdate" class="text-md-right">Fechas de Nacimiento</label>
 
-                            <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate') }}" required autocomplete="birthdate">
+                            <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate') }}" required autocomplete="birthdate" autofocus>
 
                             @error('birthdate')
                                 <span class="invalid-feedback" role="alert">
@@ -69,7 +69,7 @@
                             <label for="gender" class="text-md-right">Genero</label>
 
                             <select name="gender" id="gender" class="form-control">
-                                <option value="">Seleccione...</option>
+                                <option value="">Seeccione..</option>
                                 <option value="Male" @if (old('gender') == 'Male') selected @endif>Hombre</option>
                                 <option value="Female" @if (old('gender') == 'Female') selected @endif>Mujer</option>
                             </select>
@@ -84,7 +84,7 @@
                         <div class="form-group">
                             <label for="address" class="text-md-right">Direccion</label>
 
-                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
 
                             @error('address')
                                 <span class="invalid-feedback" role="alert">
@@ -92,6 +92,7 @@
                                 </span>
                             @enderror
                         </div>
+
 
                         <div class="form-group">
                             <label for="password" class="text-md-right">Contraseña:</label>
