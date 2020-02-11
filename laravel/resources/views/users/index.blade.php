@@ -4,6 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+          
+          <a href="{{url('users/create')}}" class="btn btn-success">
+            <i class="fa fa-plus"></i>
+            Agregar Usuario
+          </a>
+          </br></br>
+          
           <table class="table table-inverse table-striped table-bordered">
             <thead>
               <tr>

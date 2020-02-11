@@ -10,3 +10,7 @@
 .bg-indigo {
 	background-color: #6574cd;
 }
+
+.pagination {
+	justify-content: center;
+}
