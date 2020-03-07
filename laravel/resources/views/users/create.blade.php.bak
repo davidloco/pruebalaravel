@@ -2,24 +2,19 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-
-
-        <div class="card">
-              <img src="{{ asset('imgs/register.png') }}" class="card-img-top">
-              <div class="card-body">
-                <h3 class="card-title">
-                    <i class="fa fa-user"></i>
-                    Registro de Usuarios
-                </h3>
-                <hr>
-                <form action="{{ route('users') }}" method="POST" enctype="multypart">
-                    @csrf
-                        <div class="form-group">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="h3">
+              <i class="fa fa-plus"></i>
+              Adicionar Usuario
+            </h1>
+            <hr>
+            <form action="{{ url('users') }}" method="post" enctype="multipart/form-data">
+              @csrf
+              <div class="form-group">
                             <label for="fullname" class="text-md-right">Nombre Completo</label>
 
-                            <input id="fullname" type="text" class="form-control @error('fullname') is-invalid @enderror" name="fullname" value="{{ old('fullname') }}" required autocomplete="fullname" autofocus>
+                            <input id="fullname" type="text" class="form-control @error('fullname') is-invalid @enderror" name="fullname" value="{{ old('fullname') }}" autocomplete="fullname" autofocus>
 
                             @error('fullname')
                                 <span class="invalid-feedback" role="alert">
@@ -31,7 +26,7 @@
                         <div class="form-group">
                             <label for="email" class="text-md-right">Correo Electrónico</label>
 
-                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -41,9 +36,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="phone" class="text-md-right">Numero Telefono</label>
+                            <label for="phone" class="text-md-right">Número Telefónico</label>
 
-                            <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                            <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" autocomplete="phone">
 
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">
@@ -55,7 +50,7 @@
                         <div class="form-group">
                             <label for="birthdate" class="text-md-right">Fecha Nacimiento</label>
 
-                            <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate') }}" required autocomplete="birthdate">
+                            <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate') }}" autocomplete="birthdate">
 
                             @error('birthdate')
                                 <span class="invalid-feedback" role="alert">
@@ -67,7 +62,7 @@
                         <div class="form-group">
                             <label for="gender" class="text-md-right">Genero</label>
 
-                            <select name="gender" id="gender" class="form-control">
+                            <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror">
                                 <option value="">Seleccione...</option>
                                 <option value="Male" @if (old('gender') == 'Male') selected @endif>Hombre</option>
                                 <option value="Female" @if (old('gender') == 'Female') selected @endif>Mujer</option>
@@ -81,9 +76,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="address" class="text-md-right">Direccion</label>
+                            <label for="address" class="text-md-right">Dirección</label>
 
-                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autocomplete="address">
 
                             @error('address')
                                 <span class="invalid-feedback" role="alert">
@@ -93,9 +88,30 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="photo" class="text-md-right">Foto</label>
+
+                            <button class="btn btn-indigo btn-block btn-upload" type="button"> 
+                                <i class="fa fa-upload"></i> 
+                                Seleccionar Foto
+                            </button>
+                            <input id="photo" type="file" class="form-control-file @error('photo') is-invalid @enderror d-none" name="photo" accept="image/*"> 
+
+                            <br>
+                            <div class="text-center"> 
+                              <img src="{{ asset('imgs/nophoto.png') }}" id="preview" class="img-thumbnail" width="120px">
+                            </div>
+
+                            @error('photo')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label for="password" class="text-md-right">Contraseña:</label>
 
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -107,7 +123,7 @@
                         <div class="form-group">
                             <label for="password-confirm" class="text-md-right">Confirmar Contraseña:</label>
 
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -119,13 +135,10 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-indigo btn-block">
                                 <i class="fa fa-save"></i>
-                                Registrarse
+                                Adicionar
                             </button>
                         </div>
-                    </form>
-              </div>
-            </div>
-
+            </form>
         </div>
     </div>
 </div>

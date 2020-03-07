@@ -9,19 +9,8 @@
             <i class="fa fa-plus"></i> 
             Adicionar Usuario
           </a>
-          <a href="{{ url('generate/pdf/users') }}" class="btn btn-dark">
-            <i class="fa fa-file-pdf"></i> 
-            Generar Reporte
-          </a>
           <br><br>
           
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('home') }}">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Lista de Usuarios</a></li>
-              </ol>
-            </nav>
-
             <table class="table table-striped table-bordered">
                 <thead>
                   <tr>
@@ -38,19 +27,15 @@
                       <td class="d-none d-sm-table-cell">{{ $user->email }}</td>
                       <td><img src="{{ asset($user->photo) }}" width="40px"></td>
                       <td>
-                        <a href="{{ url('users/'.$user->id) }}" class="btn btn-indigo btn-sm">
+                        <a href="" class="btn btn-indigo btn-sm">
                           <i class="fa fa-search"></i>
                         </a>
-                        <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-indigo btn-sm">
-                          <i class="fa fa-pen"></i>
+                        <a href="" class="btn btn-indigo btn-sm">
+                          <i class="fa fa-pencil"></i>
                         </a>
-                        <form action="{{ url('users/'.$user->id) }}" method="post" style="display: inline-block;">
-                          @csrf
-                          @method('DELETE')
-                          <button type="button" class="btn btn-danger btn-sm btn-delete">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                        </form>
+                        <a href="" class="btn btn-danger btn-sm">
+                          <i class="fa fa-trash"></i>
+                        </a>
                       </td>
                     </tr>
                   @endforeach

@@ -9,16 +9,17 @@ class Article extends Model
     protected $fillable = [
         'name', 
         'image', 
-        'description',
+        'description', 
         'user_id',
         'category_id'
     ];
 
-    public funtion user(){
+    public function user() {
     	return $this->belongsTo('App\User');
     }
 
-    public funtion category(){
+    public function category() {
     	return $this->belongsTo('App\Category');
     }
+    
 }

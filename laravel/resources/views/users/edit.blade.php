@@ -5,26 +5,26 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h1 class="h3">
-              <i class="fa fa-plus"></i>
-              Adicionar Usuario
+              <i class="fa fa-pen"></i>
+              Modificar Usuario
             </h1>
             <hr>
-            @if($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  @foreach($errors->all() as $message)
-                    <li> {{ $message }} </li>
-                  @endforeach
-                </div>
-            @endif
-            <form action="{{ url('users') }}" method="post" enctype="multipart/form-data">
+            <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url('home') }}">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('users') }}">Lista de Usuarios</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Modificar Usuario</a></li>
+                        </ol>
+                    </nav>
+
+            <form action="{{ url('users/'.$user->id) }}" method="post" enctype="multipart/form-data">
               @csrf
+              @method('put')
+              <input type="hidden" name="id" value="{{ $user->id }}">
               <div class="form-group">
                             <label for="fullname" class="text-md-right">Nombre Completo</label>
 
-                            <input id="fullname" type="text" class="form-control @error('fullname') is-invalid @enderror" name="fullname" value="{{ old('fullname') }}" autocomplete="fullname" autofocus>
+                            <input id="fullname" type="text" class="form-control @error('fullname') is-invalid @enderror" name="fullname" value="{{ old('fullname', $user->fullname) }}" autocomplete="fullname" autofocus>
 
                             @error('fullname')
                                 <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label for="email" class="text-md-right">Correo Electrónico</label>
 
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" autocomplete="email">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label for="phone" class="text-md-right">Número Telefónico</label>
 
-                            <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" autocomplete="phone">
+                            <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', $user->phone) }}" autocomplete="phone">
 
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                         <div class="form-group">
                             <label for="birthdate" class="text-md-right">Fecha Nacimiento</label>
 
-                            <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate') }}" autocomplete="birthdate">
+                            <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate', $user->birthdate) }}" autocomplete="birthdate">
 
                             @error('birthdate')
                                 <span class="invalid-feedback" role="alert">
@@ -74,8 +74,8 @@
 
                             <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror">
                                 <option value="">Seleccione...</option>
-                                <option value="Male" @if (old('gender') == 'Male') selected @endif>Hombre</option>
-                                <option value="Female" @if (old('gender') == 'Female') selected @endif>Mujer</option>
+                                <option value="Male" @if (old('gender', $user->gender) == 'Male') selected @endif>Hombre</option>
+                                <option value="Female" @if (old('gender', $user->gender) == 'Female') selected @endif>Mujer</option>
                             </select>
 
                             @error('gender')
@@ -88,7 +88,7 @@
                         <div class="form-group">
                             <label for="address" class="text-md-right">Dirección</label>
 
-                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autocomplete="address">
+                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address', $user->address) }}" autocomplete="address">
 
                             @error('address')
                                 <span class="invalid-feedback" role="alert">
@@ -108,7 +108,7 @@
 
                             <br>
                             <div class="text-center @error('photo') is-invalid @enderror"> 
-                              <img src="{{ asset('imgs/nophoto.png') }}" id="preview" class="img-thumbnail" width="120px">
+                              <img src="{{ asset($user->photo) }}" id="preview" class="img-thumbnail" width="120px">
                             </div>
 
                             @error('photo')

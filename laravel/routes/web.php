@@ -22,6 +22,9 @@ Route::get('helloworld', function() {
 // Route::resource('Article', 'ArticleController');
 Route::resource('users', 'UserController');
 
+// Reports
+Route::get('generate/pdf/users', 'UserController@pdf');
+
 // Any: Cualquier solicitud (get/post/put/delete)
 Route::any('show/articles', function() {
 	$arts = App\Article::all();
