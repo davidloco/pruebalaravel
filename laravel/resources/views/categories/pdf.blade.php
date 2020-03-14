@@ -36,7 +36,7 @@
 	</thead>
 	@foreach($categories as $category)
 		<tr>
-			<td></td>
+			<td><img src="{{ public_path(). '/' . $category->image }}" width="40px"></td>
 			<td> {{ $category->name }} </td>
 			<td> {{ $category->description }} </td>					
 		</tr>

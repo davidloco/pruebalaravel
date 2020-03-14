@@ -48,9 +48,9 @@
                         <div class="form-group">
                             <label for="image" class="text-md-right">Imegen</label>
 
-                            <button class="btn btn-indigo btn-block btn-upload" type="button"> 
+                            <button class="btn btn-indigo btn-block btn-upload-img" type="button"> 
                                 <i class="fa fa-upload"></i> 
-                                Seleccionar Imegen
+                                Seleccionar Imagen
                             </button>
                             <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror d-none" name="image" accept="image/*">
 

@@ -11,7 +11,7 @@
 			<tr>				
 				<td> {{ $category->name }} </td>
 				<td> {{ $category->description }} </td>
-				<td></td>
+				<td><img src="{{ public_path(). '/' . $category->image }}" width="40px"></td>
 			</tr>
 		@endforeach
 	</tbody>

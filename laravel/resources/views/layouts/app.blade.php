@@ -118,7 +118,7 @@
 
                 Swal.fire({
                   title: 'Esta usted seguro?',
-                  text: "Desea Eliminar este registro!"+ $(this).name,
+                  text: "Desea Eliminar este registro!",//+ $(this).name,
                   icon: 'error',
                   showCancelButton: true,
                   confirmButtonColor: '#38c172',
@@ -145,8 +145,23 @@
             $('.btn-upload').click(function(event) {
                 $('#photo').click();
             });
+
+            $('.btn-upload-img').click(function(event) {
+                $('#image').click();
+            });
             // -----------------------------------------------
             $('#photo').change(function(e) {
+                var fileName = e.target.files[0].name;
+                $("#file").val(fileName);
+
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#preview').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(this.files[0]);
+            });
+
+            $('#image').change(function(e) {
                 var fileName = e.target.files[0].name;
                 $("#file").val(fileName);
 

@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label for="image" class="text-md-right">Imagen</label>
 
-                            <button class="btn btn-indigo btn-block btn-upload" type="button"> 
+                            <button class="btn btn-indigo btn-block btn-upload-img" type="button"> 
                                 <i class="fa fa-upload"></i> 
                                 Seleccionar Foto
                             </button>
@@ -56,7 +56,7 @@
 
                             <br>
                             <div class="text-center @error('image') is-invalid @enderror"> 
-                              <img src="{{ asset('imgs/nophoto.png') }}" id="preview" class="img-thumbnail" width="120px">
+                              <img src="{{ asset('imgs/noimage.png') }}" id="preview" class="img-thumbnail" width="120px">
                             </div>
 
                             @error('image')

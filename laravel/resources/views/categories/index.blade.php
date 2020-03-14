@@ -7,7 +7,7 @@
 
           <a href="{{ url('categories/create') }}" class="btn btn-success">
             <i class="fa fa-plus"></i> 
-            Adicionar Usuario
+            Adicionar Categoria
           </a>
           <a href="{{ url('generate/pdf/categories') }}" class="btn btn-indigo">
             <i class="fa fa-file-pdf"></i> 
@@ -23,16 +23,16 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('home') }}">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Lista de Usuarios</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Lista de Categorias</a></li>
               </ol>
             </nav>
 
             <table class="table table-striped table-bordered">
                 <thead>
                   <tr>
-                    <th>Nombre Completo</th>
-                    <th class="d-none d-sm-table-cell">Correo Electrónico</th>
-                    <th>Foto</th>
+                    <th>Nombre</th>
+                    <th class="d-none d-sm-table-cell">Descripcion</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
