@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Requests\CategoryRequest;
+use App\Exports\CategoriesExport;
 
 class CatergoyController extends Controller
 {
@@ -66,7 +67,8 @@ class CatergoyController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.show')->with('category', $category);
     }
 
     /**
@@ -77,7 +79,8 @@ class CatergoyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.edit')->with('category', $category);
     }
 
     /**
@@ -89,7 +92,18 @@ class CatergoyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $category->name  = $request->name;
+        $category->description     = $request->description;
+        if ($request->hasFile('image')) {
+            $file = time().'.'.$request->image->extension();
+            $request->image->move(public_path('imgs'), $file);
+            $category->image = 'imgs/'.$file;
+        }
+
+        if ($category->save()) {
+            return redirect('categories')->with('message', 'La Categoria: '.$category->name.' fue Modificado con Exito!');
+        }
     }
 
     /**
@@ -98,8 +112,28 @@ class CatergoyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+   /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
-        //
+       $category = Category::find($id);
+       if ($category->delete()) {
+            return redirect('categories')->with('message', 'La Categoria: '.$category->name.' ha sido eliminado');
+       }
+    }
+
+    
+    public function pdf() {
+        $categories = Category::all();
+        $pdf = \PDF::loadView('categories.pdf', compact('categories'));
+        return $pdf->download('categories.pdf');
+    }
+
+    public function excel() {
+        return \Excel::download(new CategoriesExport, 'categories.xlsx');
     }
 }

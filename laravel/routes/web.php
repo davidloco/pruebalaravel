@@ -27,6 +27,9 @@ Route::resource('categories', 'CatergoyController');
 Route::get('generate/pdf/users', 'UserController@pdf');
 Route::get('generate/excel/users', 'UserController@excel');
 
+Route::get('generate/pdf/categories', 'CatergoyController@pdf');
+Route::get('generate/excel/categories', 'CatergoyController@excel');
+
 // Any: Cualquier solicitud (get/post/put/delete)
 Route::any('show/articles', function() {
 	$arts = App\Article::all();

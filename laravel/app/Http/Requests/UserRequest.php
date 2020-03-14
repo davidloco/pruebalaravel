@@ -23,7 +23,7 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        if($this->method('put')) {
+        if($this->method() == 'PUT') {
             return [
                 'fullname'  => 'required|min:10',
                 'email'     => 'required|email|unique:users,email,'.$this->id,
