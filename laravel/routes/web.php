@@ -21,9 +21,11 @@ Route::get('helloworld', function() {
 // Resource: Crea Automaticamente todas la rutas
 // Route::resource('Article', 'ArticleController');
 Route::resource('users', 'UserController');
+Route::resource('categories', 'CatergoyController');
 
 // Reports
 Route::get('generate/pdf/users', 'UserController@pdf');
+Route::get('generate/excel/users', 'UserController@excel');
 
 // Any: Cualquier solicitud (get/post/put/delete)
 Route::any('show/articles', function() {
