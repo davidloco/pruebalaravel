@@ -22,6 +22,7 @@ Route::get('helloworld', function() {
 // Route::resource('Article', 'ArticleController');
 Route::resource('users', 'UserController');
 Route::resource('categories', 'CatergoyController');
+Route::resource('articles', 'ArticleController');
 
 // Reports
 Route::get('generate/pdf/users', 'UserController@pdf');
@@ -29,6 +30,9 @@ Route::get('generate/excel/users', 'UserController@excel');
 
 Route::get('generate/pdf/categories', 'CatergoyController@pdf');
 Route::get('generate/excel/categories', 'CatergoyController@excel');
+
+Route::get('generate/pdf/articles', 'ArticleController@pdf');
+Route::get('generate/excel/articles', 'ArticleController@excel');
 
 // Any: Cualquier solicitud (get/post/put/delete)
 Route::any('show/articles', function() {
