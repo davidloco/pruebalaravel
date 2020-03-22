@@ -30,7 +30,15 @@
                         <tr>
                             <th>Descripcion</th>
                             <td>{{ $article->description }}</td>
-                        </tr>                        
+                        </tr>
+                        <tr>
+                            <th>Usuario</th>
+                            <td>{{ $user->fullname }}</td>
+                        </tr>        
+                        <tr>
+                            <th>Categoria</th>
+                            <td>{{ $category->name }}</td>
+                        </tr>       
                     </table>
         </div>
     </div>

@@ -32,13 +32,25 @@
 			<th> Imagen </th>
 			<th> Nombre </th>
 			<th> Descripcion </th>
+			<th> Usuario </th>
+			<th> Categoria </th>
 		</tr>
 	</thead>
 	@foreach($articles as $article)
 		<tr>
 			<td><img src="{{ public_path(). '/' . $article->image }}" width="40px"></td>
 			<td> {{ $article->name }} </td>
-			<td> {{ $article->description }} </td>					
+			<td> {{ $article->description }} </td>
+			@foreach($users as $user)
+				@if ($article->user_id == $user->id)
+					<td> {{ $user->fullname }} </td>
+				@endif	
+			@endforeach
+			@foreach($categories as $category)
+				@if ($article->category_id == $category->id)
+					<td> {{ $category->name }} </td>				
+				@endif
+			@endforeach	
 		</tr>
 	@endforeach
 </table>

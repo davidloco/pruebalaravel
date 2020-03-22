@@ -46,7 +46,41 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="image" class="text-md-right">Imegen</label>
+                            <label for="user" class="text-md-right">Usuario</label>
+
+                            <select name="user" id="user" class="form-control @error('user') is-invalid @enderror">
+                                <option value="">Seleccione...</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}" @if (old('user', $article->user_id) == $user->id) selected @endif>{{ $user->fullname }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('user')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category" class="text-md-right">Catergoria</label>
+
+                            <select name="category" id="category" class="form-control @error('category') is-invalid @enderror">
+                                <option value="">Seleccione...</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" @if (old('category', $article->category_id) == $category->id) selected @endif>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('category')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image" class="text-md-right">Imagen</label>
 
                             <button class="btn btn-indigo btn-block btn-upload-img" type="button"> 
                                 <i class="fa fa-upload"></i> 

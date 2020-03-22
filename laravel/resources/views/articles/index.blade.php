@@ -7,7 +7,7 @@
 
           <a href="{{ url('articles/create') }}" class="btn btn-success">
             <i class="fa fa-plus"></i> 
-            Adicionar Categoria
+            Adicionar Articulo
           </a>
           <a href="{{ url('generate/pdf/articles') }}" class="btn btn-indigo">
             <i class="fa fa-file-pdf"></i> 

@@ -8,6 +8,13 @@
               <i class="fa fa-plus"></i>
               Adicionar Articulos
             </h1>
+            <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url('home') }}">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('articles') }}">Lista de Articulos</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Crear Articulo</a></li>
+                        </ol>
+                    </nav>
             <hr>
             @if($errors->any())
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">

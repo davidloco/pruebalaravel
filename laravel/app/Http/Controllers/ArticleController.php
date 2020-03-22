@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\Category;
+use App\User;
 use App\Http\Requests\ArticleRequest;
 use App\Exports\ArticlesExport;
 
@@ -63,8 +65,10 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article = Article::find($id);
-        return view('articles.show')->with('article', $article);
+        $article    = Article::find($id);
+        $user       = User::find($id);
+        $category   = Category::find($id);
+        return view('articles.show')->with('article', $article)->with('user', $user)->with('category', $category);
     }
 
     /**
@@ -75,8 +79,10 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $article = Article::find($id);
-        return view('articles.edit')->with('article', $article);
+        $article    = Article::find($id);
+        $users      = User::all();
+        $categories = Category::all();
+        return view('articles.edit')->with('article', $article)->with('users', $users)->with('categories', $categories);
     }
 
     /**
@@ -86,11 +92,13 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
-        $article = Article::find($id);
-        $article->name  = $request->name;
-        $article->description     = $request->description;
+        $article                = Article::find($id);
+        $article->name          = $request->name;
+        $article->description   = $request->description;
+        $article->user_id       = $request->user;
+        $article->category_id   = $request->category;
         if ($request->hasFile('image')) {
             $file = time().'.'.$request->image->extension();
             $request->image->move(public_path('imgs'), $file);
@@ -118,8 +126,12 @@ class ArticleController extends Controller
 
     
     public function pdf() {
-        $articles = Article::all();
-        $pdf = \PDF::loadView('articles.pdf', compact('articles'));
+        //$articles = Article::all();
+        $pdf = \PDF::loadView('articles.pdf', [
+            'users' => User::all(),
+            'categories' => Category::all(),
+            'articles' => Article::all()
+        ]);
         return $pdf->download('articles.pdf');
     }
 
