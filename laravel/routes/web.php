@@ -34,6 +34,8 @@ Route::get('generate/excel/categories', 'CatergoyController@excel');
 Route::get('generate/pdf/articles', 'ArticleController@pdf');
 Route::get('generate/excel/articles', 'ArticleController@excel');
 
+
+
 // Any: Cualquier solicitud (get/post/put/delete)
 Route::any('show/articles', function() {
 	$arts = App\Article::all();
@@ -53,4 +55,5 @@ Route::get('show/user/{id}', function($id) {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', array('uses' => 'HomeController@index'))->name('home');
+Route::get('/home/{category?}', array('uses' => 'HomeController@filter'));

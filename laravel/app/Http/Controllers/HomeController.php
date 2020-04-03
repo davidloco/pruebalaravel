@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use App\Article;
+use App\Category;
 
 class HomeController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -23,6 +27,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categories = Category::all();
+        $categoriesFil = Category::all();
+        $articles = Article::all();
+        return view('home')->with('categories', $categories)->with('articles', $articles)->with('categoriesFil', $categoriesFil);
+    }
+
+
+    public function filter($id){
+        $categoriesFil = Category::all();
+        $categories = collect();
+        $categories->push(Category::find($id));
+        $articles = Article::all();
+        return view('home')->with('categories', $categories)->with('articles', $articles)->with('categoriesFil', $categoriesFil);
     }
 }
