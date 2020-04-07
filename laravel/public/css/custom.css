@@ -14,3 +14,7 @@
 .pagination {
 	justify-content: center;
 }
+
+.loader {
+    display: block;
+}

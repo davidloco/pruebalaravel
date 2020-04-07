@@ -4,31 +4,30 @@
 <script>
     function filter(id)
     {
-        window.location.href = "{{ URL::action('WelcomeController@filter') }}" + "/" + id;
+        //window.location.href = "{{ URL::action('WelcomeController@filter') }}" + "/" + id;
     }  
 </script>
 
 <div class="container">
   <div class="row justify-content-around">
-    <div class="form-group col-md-4">
-      <label for="exampleFormControlSelect1">Filtrar por Categorias</label>
-
-      <select onchange="filter(this.value)" class="form-control" id="exampleFormControlSelect1">
+    <div class="form-group col-md-4 col-offset-4 text-center">
+      <label>Filtrar por Categorias</label>
+      @csrf
+      <select onchange="filter(this.value)" class="form-control" name="catid" id="catid">
         <option value="">Seleccione</option>
-        @foreach ($categoriesFil as $category)           
-          @if($category->id == Input::get('id'))
-            <option selected="selected" value="{{ $category->id }}">{{ $category->name }}</option>
-          @else
+        <option value="0">Todos</option>
+        @foreach ($categoriesFil as $category)        
             <option value="{{ $category->id }}">{{ $category->name }}</option>
-          @endif
-        @endforeach
-        <option value="">Todos</option>
+        @endforeach        
       </select> 
+
+      <img src="{{ asset('imgs/loading.gif') }}" class="loader mt-5 d-none">
+
     </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container" id="content">
   @foreach ($categories as $category)
     <div class="card">   
       <div class="card-body">

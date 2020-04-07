@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 // Get: URL/URI
 Route::get('helloworld', function() {
 	return dd('Hola Mundo Laravel');
@@ -55,6 +56,8 @@ Route::get('show/user/{id}', function($id) {
 
 
 Auth::routes();
+
+Route::post('loadcat', 'WelcomeController@loadcat');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -16,19 +16,36 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        $categoriesFil = Category::all();
-        $articles = Article::all();
-        return view('welcome')->with('categories', $categories)->with('articles', $articles)->with('categoriesFil', $categoriesFil);
+        $categoriesFil  = Category::all();
+        $categories     = Category::all();
+        $articles       = Article::orderBy('id', 'desc')->take(20)->get();
+        return view('welcome')  ->with('categories', $categories)
+                                ->with('categoriesFil', $categoriesFil)
+                                ->with('articles', $articles);
     }
 
-
     public function filter($id){
-        $categoriesFil = Category::all();
-        $categories = collect();
+        $categoriesFil  = Category::all();
+        $categories     = collect();
         $categories->push(Category::find($id));
-        $articles = Article::all();
-        return view('welcome')->with('categories', $categories)->with('articles', $articles)->with('categoriesFil', $categoriesFil);
+        $articles       = Article::where('category_id', $id)->get(); 
+        return view('welcome')  ->with('categories', $categories)
+                                ->with('categoriesFil', $categoriesFil)
+                                ->with('articles', $articles);
+    }
+
+    public function loadcat(Request $request){
+        if($request->cid == 0) {
+            $categories     = Category::all();
+            $articles       = Article::all();            
+            return view('loadcat')  ->with('categories', $categories)
+                                    ->with('articles', $articles);
+        } else {
+            $category       = Category::where('id', $request->cid)->first();
+            $articles       = Article::where('category_id', $request->cid)->get();            
+            return view('loadcat')  ->with('category', $category)
+                                    ->with('articles', $articles);
+        }
     }
 
     /**
