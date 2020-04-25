@@ -60,11 +60,13 @@
                     </tr>
                   @endforeach
                 </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="4"><!--{{ $articles->links() }}--></td>
-                  </tr>
-                </tfoot>
+                @if (Auth::user()->role == 'admin') 
+                  <tfoot>
+                    <tr>
+                      <td colspan="4"><!--{{ $articles->links() }}--></td>
+                    </tr>
+                  </tfoot>
+                @endif
             </table>
             
         </div>     

@@ -63,7 +63,7 @@ Auth::routes();
 
 Route::post('loadcat', 'WelcomeController@loadcat');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index');
 
 Route::get('/', array('uses' => 'WelcomeController@index'));
-Route::get('/{category?}', array('uses' => 'WelcomeController@filter'));
+//Route::get('/{category?}', array('uses' => 'WelcomeController@filter'));
