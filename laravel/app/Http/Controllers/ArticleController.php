@@ -25,7 +25,7 @@ class ArticleController extends Controller
         if(Auth::user()->role == 'admin') {
             $articles = Article::paginate(8);            
         } else if (Auth::user()->role == 'editar') {
-            $articles = Article::where('user_id', Auth::user()->id)->take(8)->get();            
+            $articles = Article::where('user_id', Auth::user()->id)->paginate(8);            
         }
         return view('articles.index')->with('articles', $articles);
     }

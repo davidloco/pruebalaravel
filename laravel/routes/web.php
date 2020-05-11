@@ -21,10 +21,7 @@ Route::get('helloworld', function() {
 });
 // Resource: Crea Automaticamente todas la rutas
 // Route::resource('Article', 'ArticleController');
-Route::resource('users', 'UserController');
-Route::resource('categories', 'CatergoyController');
-Route::resource('articles', 'ArticleController');
-Route::resource('welcome', 'WelcomeController');
+
 
 //Imports
 Route::get('import/view/users', 'UserController@importExportView');
@@ -60,6 +57,14 @@ Route::get('show/user/{id}', function($id) {
 
 
 Auth::routes();
+
+Route::group(['middleware' => 'admin'], function() {
+	//Resources
+	Route::resource('users', 'UserController');
+	Route::resource('categories', 'CatergoyController');
+	Route::resource('articles', 'ArticleController');
+	Route::resource('welcome', 'WelcomeController');
+});
 
 Route::post('loadcat', 'WelcomeController@loadcat');
 
